@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+<!-- Location -->
+<br>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <h1>{{ destination.name }}</h1>
+      <p>Popular Destination</p>
+    </div>
+    <div class="col-lg-4 text-end">
+      <p>1 AUD equals</p>
+      <h1>0.62 {{destination.currency}}</h1>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <div class="card" style="width: 100%;">
+        <img src="{{ destination.image }}" style="max-width: 250px;" class="card-img-left" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ destination.name }}</h5>
+          <p class="card-text">{{ destination.description }}</p>
+          <a href="#" class="btn btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<!-- Comments -->
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header">Comments</h5>
+        <div class="card-body">
+          {{render_form(form,"/destinations/{0}/comment".format(destination.id))}}
+          {% for comment in destination.comments %}
+            <h5 class="card-title"><b>{{ comment.user.name }}</b> {{ comment.created_at }}</h5>
+            <p class="card-text">{{ comment.text }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+
+
+{% endblock %}

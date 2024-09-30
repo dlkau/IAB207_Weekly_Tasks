@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+      {% block header %}
+      <div class="row">
+        <div class="container-fluid py-5 d-flex justify-content-center align-items-center">
+          <div class="col-sm-12">
+            <div class="jumbotron jumbotronbkrd bg-light shadow  p-3">
+              <h1 class="display-4"><b>Sign up to start Holidaying today</b></h1>
+              <hr class="my-4">
+              <p>Create an account with Destination Finder today</p>
+              <a class="btn btn-primary btn-lg" href="{{ url_for('auth.register') }}" role="button">Sign-up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+
+      {% block content %}
+      <!-- Jumbotron for the website -->
+      <br>
+      <div class="row">
+          <div class="container-fluid py-5 bg-light shadow">
+              <div class="row">
+                  <div class="col-12 d-flex flex-column align-items-center">
+                      <h1 class="display-5 fw">Find your next destination</h1>
+                      <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+                      <a href="{{url_for('main.index')}}#destinations" class="btn btn-primary btn-lg" type="button">Find Destinations Now</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <br><br>
+
+      <h1>Find your dream destination now</h1>
+      <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}" >
+        <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2"   id="SearchForm">
+        <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+      </form>
+    
+      <br><br>
+
+
+      <div>
+          <h1 id="destinations">Destinations</h1>
+          <div class="card-group">
+            {% for destination in destinations %}
+              <div class="card mx-3">
+                <img src="{{destination.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{destination.name}}</h5>
+                  <p class="card-text">{{destination.description}}</p>
+                  <div class="card-footer"><a href="{{url_for('destination.show', id=destination.id)}}" class ="btn btn-danger"> View Details </a></div>
+                </div>
+              </div>
+          {% endfor %}
+      </div>
+      {% endblock %}
+    

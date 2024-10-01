@@ -43,7 +43,7 @@
         <div class="card-body">
           {{render_form(form,"/destinations/{0}/comment".format(destination.id))}}
           {% for comment in destination.comments %}
-            <h5 class="card-title"><b>{{ comment.user.name }}</b> {{ comment.created_at }}</h5>
+            <h5 class="card-title"><b>{{ comment.user.name }}</b> {{ comment.created_at.strftime("%H:%M %d-%m-%Y") }}</h5>
             <p class="card-text">{{ comment.text }}</p>
           {% endfor %}
         </div>
